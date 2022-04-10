@@ -8,6 +8,20 @@ local GetService =
     }
 )
 
+ local _1;
+_1 = hookmetamethod(game, "__namecall", function(self, ...)
+    if not checkcaller() and getnamecallmethod() == "FireServer" then
+        if tostring(self.Name) == ".gg/untitledhood" then
+            local args = {...}
+            if tostring(args[1]) == "ForceDetect" or tostring(args[1]) == "TeleportDetect" or tostring(args[1]) == "GUI_CHECK" then
+                return print("anticheat detected something sussy");
+            end
+        end
+    end
+
+    return _1(self, ...);
+end)
+
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/vapereborn/vape/main/ui"))()
 local NotifyLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/vapereborn/vape/main/notifications"))()
 local Notify = NotifyLibrary.Notify
